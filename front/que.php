@@ -1,17 +1,40 @@
-<feildset>
-<legend>目前位置：首頁 > 問卷調查</legend>
-<div>問卷標題<input type="text" name="subject" id="subject"></div>
-<div id="questions"><input type="text" name="opt[]" id="opt"><button onclick="more()">更多</button></div>
-<div><button onclick="add()">新增問卷</button></div>
-</feildset>
-<script>
+<fieldset>
+    <legend>目前位置：首頁>問卷調查</legend>
+<table class='tab'>
+    <tr>
+        <td width="10%">編號</td>
+        <td width="50%">問卷題目</td>
+        <td width="15%">投票總數</td>
+        <td width="10%">結果</td>
+        <td>狀態</td>
+    </tr>
+    <?php
+    $ques=$Que->all(['parent'=>0]);
+    foreach($ques as $key => $que){
+    ?>
+    <tr>
+        <td><?=$key+1;?></td>
+        <td><?=$que['text'];?></td>
+        <td><?=$que['count'];?></td>
+        <td>
+            <a href='?do=result&id=<?=$que['id'];?>'>結果</a>
+        </td>
+        <td>
+            <?php
+                if(isset($_SESSION['login'])){
+                    echo "<a href='?do=vote&id={$que['id']}'>";
+                    echo "參與投票";
+                    echo "</a>";
 
-    function more(){
-$('#questions').prepend("<input type='text' name='opt[]' >");
+                }else{
+                    echo "請先登入";
+                }
+            ?>
+        </td>
+    </tr>
+    <?php
     }
-    function add(){
-        $.post('../api/add_que.php',,function(){
-            
-        })
-    }
-</script>
+    ?>
+</table>
+
+</fieldset>

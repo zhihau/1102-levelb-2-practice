@@ -1,17 +1,30 @@
-<feildset>
-    <form action="../api/add_que.php" method="post">
-<legend>目前位置：首頁 > 問卷調查</legend>
-<div>問卷標題<input type="text" name="subject" id="subject"></div>
-<div id="questions"><input type="text" name="opt[]" id="opt"><button type="button" onclick="more()">更多</button></div>
-<div>
-    <input type="submit" value="新增問卷">
-    <input type="reset" value="清除">
-</div>
+<fieldset>
+    <legend>新增問卷</legend>
+<form action="api/que.php" method="post">
+    <div style="display:flex">
+        <div class="clo">問卷名稱</div>
+        <div>
+            <input type="text" name="subject">
+        </div>
+    </div>
+    <div class='clo' id="opt">
+        <div>
+         <input type="text" name="options[]">
+         <input type="button" onclick="more()" value="更多">
+        </div>
+    </div>
+    <div>
+        <input type="submit" value="新增">|
+        <input type="reset" value="清空">
+    </div>
 </form>
-</feildset>
-<script>
 
-    function more(){
-$('#questions').prepend("<input type='text' name='opt[]' >");
-    }
+</fieldset>
+<script>
+function more(){
+    let opt=`<div><input type="text" name="options[]"></div>`
+    $("#opt").prepend(opt);
+}
+
+
 </script>
