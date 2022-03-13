@@ -1,10 +1,10 @@
 <?php
-include "../base.php";
+include_once "../base.php";
 
-$row=$User->find($_POST);
 
-if(empty($row)){
-    echo "無此資料";
+$c=$User->find($_POST);
+if($c){
+    echo "您的密碼為：".$c['pw'];
 }else{
-    echo "您的密碼為：".$row['pw'];
+    echo "查無此資料";
 }

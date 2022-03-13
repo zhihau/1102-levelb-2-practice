@@ -1,8 +1,9 @@
 <?php
-include "../base.php";
+include_once "../base.php";
 
-$chk=$User->math('count','*',$_POST);
-if($chk>0){
+
+$c=$User->math('count','*',$_POST);
+if($c>0){
     echo 1;
 }else{
     echo 0;

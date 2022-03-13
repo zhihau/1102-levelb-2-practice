@@ -1,12 +1,11 @@
-<?php include_once "../base.php";
+<?php
+include_once "../base.php";
 
-$opt=$Que->find($_POST['opt']);
+$sub=$Que->find($_POST['subjectid']);
+$sub['count']++;
+$Que->save($sub);
+$opt=$Que->find($_POST['vote']);
 $opt['count']++;
-
-$subject=$Que->find($opt['parent']);
-$subject['count']++;
-
 $Que->save($opt);
-$Que->save($subject);
 
-to("../index.php?do=result&id=".$subject['id']);
+to('../index.php?do=que');

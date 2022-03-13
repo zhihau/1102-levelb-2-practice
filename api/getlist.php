@@ -1,11 +1,7 @@
 <?php
-include "../base.php";
+include_once "../base.php";
 
-$rows=$News->all($_POST);
-if(!empty($rows)){
-foreach($rows as $row){
-    echo "<p>";
-    echo "<a href='#' onclick='shownews({$row['id']})'>{$row['title']}</a>";
-    echo "</p>";
-}
+$rs=$News->all($_POST);
+foreach($rs as $r){
+    echo "<a href='#' onclick='getpost({$r['id']})'>{$r['title']}</a>";
 }

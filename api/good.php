@@ -1,18 +1,20 @@
 <?php
-include "../base.php";
+include_once "../base.php";
 
-$news=$News->find(['id'=>$_POST['news']]);
-$type=$_POST['type'];
-switch($type){
+
+switch($_POST['type']){
     case 1:
-        $news['good']++;
-        $News->save($news);
-        $Log->save(['news'=>$_POST['news'],'user'=>$_SESSION['login']]);
+        $n=$News->find($_POST['news']);
+        $n['good']++;
+        $News->save($n);
+        echo $n['good'];
+        $Log->save(['news'=>$_POST['news'],'user'=>$_POST['user']]);
         break;
     case 2:
-        $news['good']--;
-        $News->save($news);
-        $Log->del(['news'=>$_POST['news'],'user'=>$_SESSION['login']]);
+        $n=$News->find($_POST['news']);
+        $n['good']--;
+        $News->save($n);
+        echo $n['good'];
+        $Log->del(['news'=>$_POST['news'],'user'=>$_POST['user']]);
         break;
-
 }

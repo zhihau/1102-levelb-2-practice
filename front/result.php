@@ -1,29 +1,30 @@
+<fieldset>
 <?php
 $subject=$Que->find($_GET['id']);
 ?>
-<fieldset>
-    <legend>目前位置：首頁>問卷調查><?=$subject['text'];?></legend>
-    <h3><?=$subject['text'];?></h3>
-    <?php
-    //$options=$Que->all(['parent'=>$subject['id']])
-    $options=$Que->all(['parent'=>$_GET['id']]);
-    foreach($options as $key => $opt){
-        $div=($subject['count']==0)?1:$subject['count'];
-        $rate=round($opt['count']/$div,2);
-    ?>
-    <div style="display:flex;margin:15px 0">
-        <div style="width:40%"><?=($key+1).".".$opt['text'];?></div>
-        <div style="height:25px;background:#ccc;width:<?=40*$rate;?>%"></div>
-        <div><?=$opt['count'];?>票(<?=$rate*100;?>%)</div>
-    </div>
-    
-    <?php
-    }
-    ?>
-    <div class="ct">
-        <button onclick="location.href='?do=que'">返回</button>
+<legend> 目前位置：首頁>  問卷調查 ><?=$subject['text'];?></legend>
+
+<h4><?=$subject['text'];?></h4>
+<?php
+$rs=$Que->all(['parent'=>$subject['id']]);
+foreach($rs as $k=>$r){
+
+    $total=$subject['count']>0?$subject['count']:1;
+    $rate=round($r['count']/$total,2);
+    $length=$rate*80;
+    $num=$rate*100;
+
+?>
+<div style="display:flex">
+    <div style="width:45%"><?=$k+1;?>.<?=$r['text'];?></div>
+    <div>
+        <div style="width:<?=$length?>%;background:darkgray">&nbsp;</div>
+        <div><?=$r['count'];?>票(<?=$num?>%)</div>
         
     </div>
-
-
+</div>
+<?php
+}
+?>
+<div class="ct"><button onclick="location.href='?do=que'">返回</button></div>
 </fieldset>

@@ -1,4 +1,10 @@
 <?php
-include "../base.php";
+include_once "../base.php";
 
-echo $User->save($_POST);
+
+$c=$User->save($_POST);
+if($c>0){
+    echo 1;
+}else{
+    echo 0;
+}
