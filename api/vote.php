@@ -8,4 +8,4 @@ $opt=$Que->find($_POST['vote']);
 $opt['count']++;
 $Que->save($opt);
 
-to('../index.php?do=que');
+to('../index.php?do=result&id='.$_POST['subjectid']);

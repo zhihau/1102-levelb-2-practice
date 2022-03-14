@@ -26,7 +26,7 @@
             if(!isset($_SESSION['login'])){
                 echo "<a href='?do=login'>請先登入</a>";
             }else{
-                echo "<a href='?do=vote&id={$r['id']}'>餐與問卷</a>";
+                echo "<a href='?do=vote&id={$r['id']}'>參與投票</a>";
 
             }
             ?>
